@@ -1,0 +1,44 @@
+# VisionStream Default Experiment Configuration
+# ───────────────────────────────────────────────
+# Edit this file or create copies for different experiments.
+# All component names must be registered via @register_* decorators.
+
+pipeline:
+  dataset: kodak                     # registered dataset name
+  dataset_args:                      # kwargs passed to dataset constructor
+    root: data/kodak
+
+  transforms:                        # ordered list of preprocessing transforms
+    - name: normalize
+    - name: to_bchw
+
+  codec: jpeg                        # registered codec name
+  codec_args:                        # kwargs passed to codec constructor
+    quality: 50
+
+  vision_model: yolov8n              # registered vision model name
+  vision_model_args:
+    device: cuda:0
+    conf_threshold: 0.25
+
+  metrics:                           # list of registered metric names
+    - psnr
+    - msssim
+    - bpp
+
+  device: cuda:0
+
+# Training configuration (used by train scripts)
+training:
+  epochs: 100
+  batch_size: 4
+  lr: 0.0001
+  lambda_rd: 0.01
+  crop_size: 256
+  checkpoint_dir: checkpoints/
+
+# Output
+output:
+  results_dir: user_workspace/experiments/
+  save_images: false
+  verbose: true

@@ -1,0 +1,31 @@
+# V2 Neural Codec Experiment — uses ELIC+GMM+Attention codec
+# Compare against the default.yaml (JPEG) to see the R-D difference.
+
+pipeline:
+  dataset: kodak
+  dataset_args:
+    root: data/kodak
+
+  transforms:
+    - name: normalize
+    - name: to_bchw
+
+  codec: v2_elic
+  codec_args:
+    device: cuda:0
+
+  vision_model: yolov8n
+  vision_model_args:
+    device: cuda:0
+
+  metrics:
+    - psnr
+    - msssim
+    - bpp
+
+  device: cuda:0
+
+output:
+  results_dir: user_workspace/experiments/
+  save_images: false
+  verbose: true

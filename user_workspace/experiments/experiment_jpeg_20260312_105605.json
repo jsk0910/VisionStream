@@ -1,0 +1,269 @@
+{
+  "config": {
+    "pipeline": {
+      "dataset": "kodak",
+      "dataset_args": {
+        "root": "data/kodak"
+      },
+      "transforms": [
+        {
+          "name": "normalize"
+        },
+        {
+          "name": "to_bchw"
+        }
+      ],
+      "codec": "jpeg",
+      "codec_args": {
+        "quality": 50
+      },
+      "vision_model": "yolov8n",
+      "vision_model_args": {
+        "device": "cuda:0",
+        "conf_threshold": 0.25
+      },
+      "metrics": [
+        "psnr",
+        "msssim",
+        "bpp"
+      ],
+      "device": "cuda:0"
+    },
+    "training": {
+      "epochs": 100,
+      "batch_size": 4,
+      "lr": 0.0001,
+      "lambda_rd": 0.01,
+      "crop_size": 256,
+      "checkpoint_dir": "checkpoints/"
+    },
+    "output": {
+      "results_dir": "user_workspace/experiments/",
+      "save_images": false,
+      "verbose": true
+    }
+  },
+  "summary": {
+    "psnr": 32.1738,
+    "msssim": 0.9769,
+    "bpp": 0.9055
+  },
+  "per_image": [
+    {
+      "image": "kodim01.png",
+      "psnr": 29.8679,
+      "msssim": 0.9823,
+      "bpp": 1.2572,
+      "encode_ms": 9.8,
+      "decode_ms": 2.3,
+      "vision_ms": 1061.9
+    },
+    {
+      "image": "kodim02.png",
+      "psnr": 32.8443,
+      "msssim": 0.9563,
+      "bpp": 0.6892,
+      "encode_ms": 3.4,
+      "decode_ms": 2.6,
+      "vision_ms": 10.9
+    },
+    {
+      "image": "kodim03.png",
+      "psnr": 34.5576,
+      "msssim": 0.9773,
+      "bpp": 0.6132,
+      "encode_ms": 3.2,
+      "decode_ms": 2.5,
+      "vision_ms": 17.0
+    },
+    {
+      "image": "kodim04.png",
+      "psnr": 33.2573,
+      "msssim": 0.9709,
+      "bpp": 0.7526,
+      "encode_ms": 3.7,
+      "decode_ms": 4.4,
+      "vision_ms": 152.9
+    },
+    {
+      "image": "kodim05.png",
+      "psnr": 29.5863,
+      "msssim": 0.9834,
+      "bpp": 1.4054,
+      "encode_ms": 8.8,
+      "decode_ms": 4.5,
+      "vision_ms": 35.4
+    },
+    {
+      "image": "kodim06.png",
+      "psnr": 31.1598,
+      "msssim": 0.9778,
+      "bpp": 1.0153,
+      "encode_ms": 11.0,
+      "decode_ms": 3.5,
+      "vision_ms": 30.2
+    },
+    {
+      "image": "kodim07.png",
+      "psnr": 33.9188,
+      "msssim": 0.9849,
+      "bpp": 0.759,
+      "encode_ms": 11.9,
+      "decode_ms": 2.8,
+      "vision_ms": 26.1
+    },
+    {
+      "image": "kodim08.png",
+      "psnr": 29.4258,
+      "msssim": 0.9858,
+      "bpp": 1.4062,
+      "encode_ms": 4.7,
+      "decode_ms": 3.6,
+      "vision_ms": 61.2
+    },
+    {
+      "image": "kodim09.png",
+      "psnr": 34.5281,
+      "msssim": 0.98,
+      "bpp": 0.6254,
+      "encode_ms": 6.3,
+      "decode_ms": 7.4,
+      "vision_ms": 14.1
+    },
+    {
+      "image": "kodim10.png",
+      "psnr": 34.1757,
+      "msssim": 0.9783,
+      "bpp": 0.6967,
+      "encode_ms": 8.7,
+      "decode_ms": 3.0,
+      "vision_ms": 18.8
+    },
+    {
+      "image": "kodim11.png",
+      "psnr": 31.713,
+      "msssim": 0.9766,
+      "bpp": 0.9308,
+      "encode_ms": 3.5,
+      "decode_ms": 9.1,
+      "vision_ms": 17.5
+    },
+    {
+      "image": "kodim12.png",
+      "psnr": 34.6048,
+      "msssim": 0.9754,
+      "bpp": 0.6584,
+      "encode_ms": 3.7,
+      "decode_ms": 3.8,
+      "vision_ms": 15.7
+    },
+    {
+      "image": "kodim13.png",
+      "psnr": 27.5991,
+      "msssim": 0.9764,
+      "bpp": 1.5331,
+      "encode_ms": 4.4,
+      "decode_ms": 3.8,
+      "vision_ms": 12.8
+    },
+    {
+      "image": "kodim14.png",
+      "psnr": 30.2888,
+      "msssim": 0.9758,
+      "bpp": 1.1469,
+      "encode_ms": 3.9,
+      "decode_ms": 2.4,
+      "vision_ms": 20.0
+    },
+    {
+      "image": "kodim15.png",
+      "psnr": 33.0694,
+      "msssim": 0.9709,
+      "bpp": 0.6911,
+      "encode_ms": 2.6,
+      "decode_ms": 2.7,
+      "vision_ms": 13.4
+    },
+    {
+      "image": "kodim16.png",
+      "psnr": 33.4476,
+      "msssim": 0.9774,
+      "bpp": 0.7749,
+      "encode_ms": 3.1,
+      "decode_ms": 3.9,
+      "vision_ms": 13.0
+    },
+    {
+      "image": "kodim17.png",
+      "psnr": 33.6924,
+      "msssim": 0.9831,
+      "bpp": 0.7666,
+      "encode_ms": 2.8,
+      "decode_ms": 2.5,
+      "vision_ms": 13.3
+    },
+    {
+      "image": "kodim18.png",
+      "psnr": 30.2859,
+      "msssim": 0.9731,
+      "bpp": 1.1046,
+      "encode_ms": 2.8,
+      "decode_ms": 3.3,
+      "vision_ms": 13.6
+    },
+    {
+      "image": "kodim19.png",
+      "psnr": 32.3715,
+      "msssim": 0.976,
+      "bpp": 0.8654,
+      "encode_ms": 3.3,
+      "decode_ms": 2.8,
+      "vision_ms": 14.1
+    },
+    {
+      "image": "kodim20.png",
+      "psnr": 33.5334,
+      "msssim": 0.981,
+      "bpp": 0.6206,
+      "encode_ms": 3.8,
+      "decode_ms": 2.5,
+      "vision_ms": 19.4
+    },
+    {
+      "image": "kodim21.png",
+      "psnr": 31.4655,
+      "msssim": 0.9776,
+      "bpp": 0.8724,
+      "encode_ms": 3.9,
+      "decode_ms": 2.4,
+      "vision_ms": 10.7
+    },
+    {
+      "image": "kodim22.png",
+      "psnr": 31.7233,
+      "msssim": 0.9685,
+      "bpp": 0.8905,
+      "encode_ms": 3.0,
+      "decode_ms": 3.2,
+      "vision_ms": 13.6
+    },
+    {
+      "image": "kodim23.png",
+      "psnr": 35.0753,
+      "msssim": 0.9762,
+      "bpp": 0.5647,
+      "encode_ms": 2.9,
+      "decode_ms": 2.3,
+      "vision_ms": 11.4
+    },
+    {
+      "image": "kodim24.png",
+      "psnr": 29.9802,
+      "msssim": 0.9798,
+      "bpp": 1.0924,
+      "encode_ms": 3.0,
+      "decode_ms": 2.4,
+      "vision_ms": 14.4
+    }
+  ]
+}

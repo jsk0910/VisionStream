@@ -1,0 +1,46 @@
+[project]
+name = "visionstream"
+version = "0.1.0"
+description = "Hybrid Vision Research Framework for Compression and Downstream Tasks"
+authors = [
+    {name = "VisionStream Team"}
+]
+dependencies = [
+    "torch>=2.0.0",
+    "numpy",
+    "pillow",
+    "pyyaml",
+    "pytorch-msssim",
+    "opencv-python",
+    "matplotlib",
+    "tqdm",
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+models = [
+    "timm>=0.9.0",
+    "ultralytics>=8.0.0",
+    "transformers>=4.30.0",
+]
+metrics = [
+    "lpips",
+    "pytorch-fid",
+    "pycocotools",
+]
+video = [
+    "ffmpeg-python",
+    "decord",
+]
+dev = [
+    "streamlit",
+    "pytest",
+    "wandb",
+    "black",
+    "isort",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
