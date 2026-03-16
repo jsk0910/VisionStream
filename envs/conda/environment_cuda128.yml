@@ -1,0 +1,15 @@
+name: visionstream
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.8
+  - pip
+  - pip:
+    - -e .[models,metrics,video,dev]

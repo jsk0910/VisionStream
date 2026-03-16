@@ -1,0 +1,28 @@
+# Base requirements (CUDA agnostic)
+torch>=2.0.0
+numpy
+pillow
+pyyaml
+pytorch-msssim
+opencv-python
+matplotlib
+tqdm
+
+# Extras (models)
+timm>=0.9.0
+ultralytics>=8.0.0
+transformers>=4.30.0
+
+# Extras (metrics)
+lpips
+pytorch-fid
+pycocotools
+
+# Extras (video)
+ffmpeg-python
+decord
+
+# Extras (dev)
+streamlit
+pytest
+wandb

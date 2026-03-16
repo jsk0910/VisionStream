@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  visionstream:
+    build:
+      context: ../..
+      dockerfile: envs/docker/Dockerfile.cuda${CUDA_VER:-12.1}
+    image: visionstream:cuda${CUDA_VER:-12.1}
+    container_name: visionstream_dev
+    volumes:
+      - ../..:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
+    network_mode: host

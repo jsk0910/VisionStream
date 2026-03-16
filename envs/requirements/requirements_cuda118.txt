@@ -1,0 +1,31 @@
+# VisionStream Requirements — CUDA 11.8
+# Install PyTorch with CUDA 11.8 first:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Base requirements (CUDA agnostic)
+numpy
+pillow
+pyyaml
+pytorch-msssim
+opencv-python
+matplotlib
+tqdm
+
+# Extras (models)
+timm>=0.9.0
+ultralytics>=8.0.0
+transformers>=4.30.0
+
+# Extras (metrics)
+lpips
+pytorch-fid
+pycocotools
+
+# Extras (video)
+ffmpeg-python
+decord
+
+# Extras (dev)
+streamlit
+pytest
+wandb
