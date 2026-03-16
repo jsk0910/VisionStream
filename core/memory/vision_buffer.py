@@ -51,25 +51,17 @@ def torch_to_vision_buffer(tensor: torch.Tensor) -> VisionBuffer:
     device_type = DeviceType.CUDA if tensor.device.type == "cuda" else DeviceType.CPU
     device_id = tensor.device.index if tensor.device.index is not None else 0
     
-    # Create empty buffer
-    vb = VisionBuffer(shape, dtype, device_type, device_id)
-    
-    # We copy for safety at the moment, but normally zero-copy via data_ptr mapping
-    # Copying data since VisionBuffer manages its own memory currently
     if device_type == DeviceType.CUDA:
-        # Move tensor to CPU before copy to avoid GPU pointer segfault using ctypes
+        # CPU to GPU copy using pybind clone_to
         tensor_cpu = tensor.cpu()
-        ptr = tensor_cpu.data_ptr()
-        ctypes.memmove(vb.data_ptr(), ptr, vb.size_bytes())
-        # We need to copy from host vb to device vb, but vb doesn't expose a host-to-device method directly from Python memory.
-        # So we clone it to the target device.
         vb_cpu = VisionBuffer(shape, dtype, DeviceType.CPU, 0)
-        ctypes.memmove(vb_cpu.data_ptr(), ptr, vb_cpu.size_bytes())
+        ctypes.memmove(ctypes.c_void_p(vb_cpu.data_ptr()), ctypes.c_void_p(tensor_cpu.data_ptr()), vb_cpu.size_bytes)
         vb = vb_cpu.clone_to(DeviceType.CUDA, device_id)
     else:
-        # CPU
+        # Create CPU buffer directly
+        vb = VisionBuffer(shape, dtype, device_type, device_id)
         ptr = tensor.data_ptr()
-        ctypes.memmove(vb.data_ptr(), ptr, vb.size_bytes())
+        ctypes.memmove(ctypes.c_void_p(vb.data_ptr()), ctypes.c_void_p(ptr), vb.size_bytes)
         
     return vb
 
@@ -85,11 +77,11 @@ def vision_buffer_to_torch(vb: VisionBuffer) -> torch.Tensor:
         vb_cpu = vb.clone_to(DeviceType.CPU, 0)
         tensor_cpu = torch.empty(shape, dtype=dtype, device='cpu')
         ptr = tensor_cpu.data_ptr()
-        ctypes.memmove(ptr, vb_cpu.data_ptr(), vb_cpu.size_bytes())
+        ctypes.memmove(ctypes.c_void_p(ptr), ctypes.c_void_p(vb_cpu.data_ptr()), vb_cpu.size_bytes)
         tensor = tensor_cpu.to(device)
     else:
         tensor = torch.empty(shape, dtype=dtype, device='cpu')
         ptr = tensor.data_ptr()
-        ctypes.memmove(ptr, vb.data_ptr(), vb.size_bytes())
+        ctypes.memmove(ctypes.c_void_p(ptr), ctypes.c_void_p(vb.data_ptr()), vb.size_bytes)
         
     return tensor
