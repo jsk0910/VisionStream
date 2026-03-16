@@ -168,9 +168,11 @@ if not HAS_BACKEND:
     st.stop()
 
 # ── Tabs ──
-tab_single, tab_batch, tab_arch = st.tabs([
+tab_single, tab_batch, tab_mlops, tab_sim, tab_arch = st.tabs([
     "🖼️ Single Image Analysis",
     "📊 Batch Kodak Benchmark",
+    "📈 MLOps Experiments",
+    "📶 Channel Sim Demo",
     "🏗️ Architecture Overview",
 ])
 
@@ -327,7 +329,52 @@ with tab_batch:
     else:
         st.info("Click the button above to start the batch benchmark.")
 
-# ═════════════════════════ TAB 3: Architecture ═════════════════
+# ═════════════════════════ TAB 3: MLOps Experiments ════════════
+with tab_mlops:
+    st.subheader("📈 MLOps Experiment Log")
+    st.markdown("Automated tracking of runs via `versioning.py` and `BaseLogger`.")
+    
+    def load_experiments(exp_dir: str = "user_workspace/experiments"):
+        import json
+        import pandas as pd
+        records = []
+        if os.path.isdir(os.path.join(ROOT, exp_dir)):
+            for run_id in os.listdir(os.path.join(ROOT, exp_dir)):
+                cfg_path = os.path.join(ROOT, exp_dir, run_id, "config.json")
+                if os.path.exists(cfg_path):
+                    with open(cfg_path, 'r') as f:
+                        cfg = json.load(f)
+                        records.append({
+                            "Run ID": cfg.get("run_id"),
+                            "Timestamp": cfg.get("timestamp"),
+                            "Git Hash": cfg.get("git_hash"),
+                            "BPP": cfg.get("config", {}).get("bpp", None),
+                            "Metric": cfg.get("config", {}).get("metric_name", "Unknown"),
+                            "Score": cfg.get("config", {}).get("metric_score", None)
+                        })
+        if not records:
+            return pd.DataFrame(columns=["Run ID", "Timestamp", "Git Hash", "BPP", "Metric", "Score"])
+        df = pd.DataFrame(records)
+        df = df.sort_values("Timestamp", ascending=False)
+        return df
+        
+    df_exp = load_experiments()
+    st.dataframe(df_exp, use_container_width=True)
+
+# ═════════════════════════ TAB 4: Channel Sim Demo ═════════════
+with tab_sim:
+    st.subheader("📶 Channel Simulator Demo")
+    st.markdown("Visualize the effect of AWGN and Packet drops on features or frames.")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.slider("AWGN Noise (SNR dB)", 0, 40, 20)
+    with col2:
+        st.slider("Packet Drop Rate", 0.0, 1.0, 0.1)
+        
+    st.info("Interactive nodes are wired in `vcm_pipeline.py`. To execute this demo, launch the pipeline runner.")
+
+# ═════════════════════════ TAB 5: Architecture ═════════════════
 with tab_arch:
     st.subheader("🏗️ VisionStream Architecture Overview")
     st.markdown("""
