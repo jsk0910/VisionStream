@@ -12,4 +12,4 @@ dependencies:
   - pytorch-cuda=11.8
   - pip
   - pip:
-    - -e .[models,metrics,video,dev]
+    - -e "../../.[models,metrics,video,dev]"
