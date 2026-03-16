@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../b
 
 import visionstream as vs
 from modules.preprocessing.basic_transforms import PreprocessingNode
-from modules.vision_model.yolo_node import YoloInferenceNode
+from modules.vision_models.yolo_node import YoloInferenceNode
 from user_workspace.custom_codecs.learned_compression.model_v2 import HybridCompressionModelV2
 
 class V2NeuralCodecNode(vs.Node):

@@ -9,7 +9,7 @@ import torchvision.io as io
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from modules.preprocessing.basic_transforms import PreprocessingNode
-from modules.external_codec.neural_codec import NeuralCodecNode
+from modules.codecs.neural_codec import NeuralCodecNode
 
 def test_kodak():
     print("=== VisionStream Phase 4: Kodak Dataset Evaluation ===")
