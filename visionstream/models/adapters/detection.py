@@ -3,7 +3,7 @@ YOLOv8 Vision Model — Detection model implementing BaseVisionModel.
 """
 import torch
 from typing import Any
-from modules.registry import BaseVisionModel, register_vision_model
+from visionstream.registry import BaseVisionModel, register_vision_model
 
 
 @register_vision_model("yolov8n")

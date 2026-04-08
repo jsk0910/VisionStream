@@ -4,7 +4,7 @@ Classification Adapter — timm wrapper for BaseVisionModel.
 import torch
 import torch.nn.functional as F
 from typing import Any, Dict, Optional
-from modules.registry import BaseVisionModel, register_vision_model
+from visionstream.registry import BaseVisionModel, register_vision_model
 
 try:
     import timm

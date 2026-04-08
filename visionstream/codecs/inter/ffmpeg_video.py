@@ -9,7 +9,7 @@ import tempfile
 import torch
 import numpy as np
 from typing import Any, Dict, Tuple
-from modules.registry import BaseCodec, register_codec
+from visionstream.registry import BaseCodec, register_codec
 
 try:
     import ffmpeg

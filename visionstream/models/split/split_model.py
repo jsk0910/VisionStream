@@ -6,7 +6,7 @@ from that layer onwards.
 import torch
 import torch.nn as nn
 from typing import Any, Callable, Dict, Optional
-from modules.registry import BaseVisionModel, get_vision_model, _list
+from visionstream.registry import BaseVisionModel, get_vision_model, _list
 
 class SplitModelWrapper(nn.Module):
     """

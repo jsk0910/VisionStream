@@ -18,7 +18,7 @@ import numpy as np
 from PIL import Image
 from typing import Any, Dict, Optional
 
-from modules.registry import BaseDataset, register_dataset
+from visionstream.registry import BaseDataset, register_dataset
 
 
 def _download_file(url: str, dest_path: str, desc: str = "") -> None:

@@ -3,7 +3,7 @@ Built-in Transforms — Composable preprocessing implementing BaseTransform.
 """
 import torch
 import torchvision.transforms.functional as TF
-from modules.registry import BaseTransform, register_transform
+from visionstream.registry import BaseTransform, register_transform
 
 
 @register_transform("resize")

@@ -6,7 +6,7 @@ researchers can add new codecs, vision models, datasets, metrics, and
 preprocessing transforms WITHOUT modifying any core framework code.
 
 Usage:
-    from modules.registry import BaseCodec, register_codec, get_codec
+    from visionstream.registry import BaseCodec, register_codec, get_codec
 
     @register_codec("my_codec")
     class MyCodec(BaseCodec):

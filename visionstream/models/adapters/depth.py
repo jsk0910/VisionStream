@@ -3,7 +3,7 @@ Depth Estimation Adapter — transformers wrapper for BaseVisionModel.
 """
 import torch
 from typing import Any, Dict, Optional
-from modules.registry import BaseVisionModel, register_vision_model
+from visionstream.registry import BaseVisionModel, register_vision_model
 
 try:
     from transformers import AutoImageProcessor, AutoModelForDepthEstimation

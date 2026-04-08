@@ -10,7 +10,7 @@ Both models fall back to bicubic interpolation if their dependencies are not ins
 import torch
 import numpy as np
 from typing import Any, Optional
-from modules.registry import BaseVisionModel, register_vision_model
+from visionstream.registry import BaseVisionModel, register_vision_model
 
 # ── Optional dependency checks ───────────────────────────
 try:

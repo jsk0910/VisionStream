@@ -8,7 +8,7 @@ import numpy as np
 from PIL import Image
 from typing import Dict, Any, List
 
-from modules.registry import BaseDataset, register_dataset
+from visionstream.registry import BaseDataset, register_dataset
 
 
 @register_dataset("kodak")

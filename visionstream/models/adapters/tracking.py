@@ -3,7 +3,7 @@ Tracking Adapter — ByteTrack wrapper via supervision.
 """
 import torch
 from typing import Any, Dict
-from modules.registry import BaseVisionModel, register_vision_model
+from visionstream.registry import BaseVisionModel, register_vision_model
 
 try:
     import supervision as sv

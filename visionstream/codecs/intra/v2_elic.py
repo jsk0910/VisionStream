@@ -8,10 +8,10 @@ import torch
 from typing import Dict, Any, Tuple
 
 # Ensure learned_compression package is importable
-_lc_dir = os.path.join(os.path.dirname(__file__), "../../user_workspace/custom_codecs/learned_compression")
+_lc_dir = os.path.join(os.path.dirname(__file__), "../../../../workspace/examples/lic_v2/codecs/learned_compression")
 sys.path.insert(0, os.path.abspath(_lc_dir))
 
-from modules.registry import BaseCodec, register_codec
+from visionstream.registry import BaseCodec, register_codec
 
 try:
     import visionstream as vs

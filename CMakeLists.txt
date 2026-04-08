@@ -31,23 +31,23 @@ endif()
 # Add include directories
 include_directories(
     ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/core
+    ${CMAKE_SOURCE_DIR}/csrc
 )
 
-# Core library (Graph, Memory, etc.)
+# Core C++/CUDA library (csrc/)
 add_library(visionstream_core SHARED
-    core/memory/vision_buffer.cu
-    core/graph/graph_manager.cpp
-    core/codec/arithmetic_coder.cu
+    csrc/memory/vision_buffer.cu
+    csrc/graph/graph_manager.cpp
+    csrc/codec/arithmetic_coder.cu
 )
-target_include_directories(visionstream_core PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(visionstream_core PUBLIC ${CMAKE_SOURCE_DIR}/csrc)
 
-# Python bindings library
+# Python bindings (visionstream/bindings/)
 pybind11_add_module(visionstream_python MODULE
-    python_api/bindings.cpp
+    visionstream/bindings/bindings.cpp
 )
 
 target_link_libraries(visionstream_python PRIVATE visionstream_core)
 
-# Install location
+# Output as 'visionstream.so' for direct Python import
 set_target_properties(visionstream_python PROPERTIES OUTPUT_NAME "visionstream")

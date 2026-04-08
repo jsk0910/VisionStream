@@ -1,6 +1,6 @@
 [project]
 name = "visionstream"
-version = "0.1.0"
+version = "3.1.0"
 description = "Hybrid Vision Research Framework for Compression and Downstream Tasks"
 authors = [
     {name = "VisionStream Team"}
@@ -47,9 +47,7 @@ build-backend = "setuptools.build_meta:__legacy__"
 
 [tool.setuptools.packages.find]
 include = [
-    "core", "core.*",
-    "modules", "modules.*",
-    "python_api", "python_api.*",
+    "visionstream", "visionstream.*",
     "tools", "tools.*",
-    "user_workspace", "user_workspace.*",
 ]
+# workspace/ is intentionally excluded (git-ignored user space)

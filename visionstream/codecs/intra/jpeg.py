@@ -8,7 +8,7 @@ import numpy as np
 from PIL import Image
 from typing import Dict, Any, Tuple
 
-from modules.registry import BaseCodec, register_codec
+from visionstream.registry import BaseCodec, register_codec
 
 
 @register_codec("jpeg")
