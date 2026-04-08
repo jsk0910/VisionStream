@@ -1,6 +1,26 @@
 import torch
 import torch.nn as nn
-from .network import GDN  # Reuse the GDN from Phase 5
+class GDN(nn.Module):
+    """Generalized Divisive Normalization."""
+    def __init__(self, channels, inverse=False, beta_min=1e-5, gamma_min=1e-5):
+        super(GDN, self).__init__()
+        self.inverse = inverse
+        self.beta_min = beta_min
+        self.gamma_min = gamma_min
+        
+        self.beta = nn.Parameter(torch.ones(1, channels, 1, 1))
+        self.gamma = nn.Parameter(torch.eye(channels).view(channels, channels, 1, 1))
+
+    def forward(self, x):
+        beta = torch.clamp(self.beta, min=self.beta_min)
+        gamma = torch.clamp(self.gamma, min=self.gamma_min)
+        norm = nn.functional.conv2d(x ** 2, gamma) + beta
+        norm = torch.sqrt(norm)
+        
+        if self.inverse:
+            return x * norm
+        else:
+            return x / norm
 
 class ResidualBlock(nn.Module):
     """
