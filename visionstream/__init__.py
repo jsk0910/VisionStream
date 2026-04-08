@@ -28,7 +28,13 @@ __all__ = ["registry"]
 
 # Expose C++ bindings
 try:
+    # 패키지 내부 (.so가 visionstream 폴더 내에 빌드된 경우)
     from ._C import Node, ArithmeticCoder, GraphManager, VisionBuffer, DataType, DeviceType
     __all__.extend(["Node", "ArithmeticCoder", "GraphManager", "VisionBuffer", "DataType", "DeviceType"])
 except ImportError:
-    pass
+    try:
+        # 루트 빌드 폴더(또는 sys.path)에 있는 경우
+        from _C import Node, ArithmeticCoder, GraphManager, VisionBuffer, DataType, DeviceType
+        __all__.extend(["Node", "ArithmeticCoder", "GraphManager", "VisionBuffer", "DataType", "DeviceType"])
+    except ImportError:
+        pass
