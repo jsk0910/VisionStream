@@ -30,7 +30,12 @@ def generate_dummy_cdf(max_length, precision=16):
         
     return cdf
 
+import pytest
+
 def test_arithmetic_coder():
+    if not hasattr(vs, "ArithmeticCoder"):
+        pytest.skip("C++/CUDA Arithmetic Coder extension is not built in this environment.")
+        
     print("=== Testing C++/CUDA Arithmetic Coder ===")
     
     N = 1000 # number of symbols to encode

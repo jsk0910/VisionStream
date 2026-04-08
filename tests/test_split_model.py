@@ -25,7 +25,6 @@ class DummyNet(nn.Module):
         x = self.fc(x)
         return x
 
-@register_vision_model("test_dummy_net")
 class DummyVisionModelAdapter(BaseVisionModel):
     def __init__(self, device="cpu", **kwargs):
         self.model = DummyNet().to(device)
@@ -55,6 +54,8 @@ def test_split_model_wrapper():
     assert output.shape == (2, 10)
 
 def test_split_vision_model():
+    register_vision_model("test_dummy_net")(DummyVisionModelAdapter)
+    
     split_model = SplitVisionModel(
         target_model_id="test_dummy_net",
         split_layer_name="conv2",
