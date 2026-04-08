@@ -1,13 +1,25 @@
 # Datasets and Large Files
 data/
+datasets/
 *.pt
 *.pth
 *.tar.gz
 benchmark_results/
+output/
+runs/
 
 # Project Planning and Handover
 Plan.md
 Handover.md
+
+# ─────────────────────────────────────────────
+# User Workspace — git completely excluded
+# All experiments, models, and configs live here
+# ─────────────────────────────────────────────
+workspace/
+# Keep workspace root marker files
+!workspace/README.md
+!workspace/.gitkeep
 
 # Python
 __pycache__/
