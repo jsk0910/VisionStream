@@ -6,7 +6,8 @@ import os
 # Assume visionstream c++ module is accessible in the context path.
 try:
     import visionstream as vs
-except ImportError:
+    _ = vs.Node  # Ensure Node is actually available
+except (ImportError, AttributeError):
     # Dummy mock for pure python local testing outside the graph
     class MockNode:
         def __init__(self, name):
