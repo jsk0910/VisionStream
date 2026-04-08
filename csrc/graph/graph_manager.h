@@ -1,7 +1,7 @@
 #ifndef VISIONSTREAM_CORE_GRAPH_GRAPH_MANAGER_H
 #define VISIONSTREAM_CORE_GRAPH_GRAPH_MANAGER_H
 
-#include "core/graph/node.h"
+#include "csrc/graph/node.h"
 #include <vector>
 #include <memory>
 #include <map>

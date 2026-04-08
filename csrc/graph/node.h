@@ -1,7 +1,7 @@
 #ifndef VISIONSTREAM_CORE_GRAPH_NODE_H
 #define VISIONSTREAM_CORE_GRAPH_NODE_H
 
-#include "core/memory/vision_buffer.h"
+#include "csrc/memory/vision_buffer.h"
 #include <memory>
 #include <string>
 #include <chrono>

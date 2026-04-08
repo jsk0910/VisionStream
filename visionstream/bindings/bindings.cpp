@@ -1,11 +1,11 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <pybind11/numpy.h>
-#include "core/memory/vision_buffer.h"
-#include "core/graph/node.h"
-#include "core/graph/graph_manager.h"
-#include "core/codec/entropy_model.h"
-#include "core/codec/arithmetic_coder.h"
+#include "csrc/memory/vision_buffer.h"
+#include "csrc/graph/node.h"
+#include "csrc/graph/graph_manager.h"
+#include "csrc/codec/entropy_model.h"
+#include "csrc/codec/arithmetic_coder.h"
 
 namespace py = pybind11;
 using namespace visionstream;

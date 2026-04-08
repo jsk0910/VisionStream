@@ -9,9 +9,9 @@ project(VisionStream LANGUAGES CXX CUDA)
 set(CMAKE_CUDA_STANDARD 17)
 set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-  set(CMAKE_CUDA_ARCHITECTURES 70 75 80 86 89)
+  set(CMAKE_CUDA_ARCHITECTURES 75 80 86 89)
 endif()
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler -Wno-deprecated-gpu-targets")
 
 # Find Python and Pybind11
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
