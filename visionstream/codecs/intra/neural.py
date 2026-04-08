@@ -8,8 +8,9 @@ try:
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../build'))
     sys.path.insert(0, build_dir)
     import visionstream as vs
+    _ = vs.Node  # Ensure Node is available
     HAS_VS = True
-except ImportError:
+except (ImportError, AttributeError):
     HAS_VS = False
     
     class MockNode:

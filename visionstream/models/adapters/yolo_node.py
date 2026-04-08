@@ -7,7 +7,8 @@ except ImportError:
 
 try:
     import visionstream as vs
-except ImportError:
+    _ = vs.Node  # Ensure Node is actually available
+except (ImportError, AttributeError):
     class MockNode:
         def __init__(self, name):
             self.name = name

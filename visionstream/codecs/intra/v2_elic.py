@@ -15,8 +15,9 @@ from visionstream.registry import BaseCodec, register_codec
 
 try:
     import visionstream as vs
+    _ = vs.ArithmeticCoder  # Ensure C++ ArithmeticCoder is available
     HAS_VS = True
-except ImportError:
+except (ImportError, AttributeError):
     HAS_VS = False
 
 
