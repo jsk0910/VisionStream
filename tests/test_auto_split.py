@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from modules.vision_models.auto_split import AutoSplitter
+from visionstream.models.split.auto_split import AutoSplitter
 
 
 class SimpleCNN(nn.Module):

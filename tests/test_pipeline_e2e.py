@@ -10,9 +10,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../'
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../build')))
 
 import visionstream as vs
-from modules.preprocessing.basic_transforms import PreprocessingNode
-from modules.vision_models.yolo_node import YoloInferenceNode
-from user_workspace.custom_codecs.learned_compression.model_v2 import HybridCompressionModelV2
+from visionstream.data.basic_transforms import PreprocessingNode
+from visionstream.models.adapters.yolo_node import YoloInferenceNode
+from workspace.examples.lic_v2.codecs.learned_compression.model_v2 import HybridCompressionModelV2
 
 class V2NeuralCodecNode(vs.Node):
     """
@@ -26,7 +26,7 @@ class V2NeuralCodecNode(vs.Node):
         self.model.eval()
         
         # Load Phase 6 Weights
-        ckpt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../user_workspace/custom_codecs/learned_compression/checkpoint_v2.pth'))
+        ckpt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../workspace/examples/lic_v2/codecs/learned_compression/checkpoint_v2.pth'))
         if os.path.exists(ckpt_path):
             print(f"[{self.name}] Loaded V2 checkpoint: {ckpt_path}")
             self.model.load_state_dict(torch.load(ckpt_path, map_location=device))

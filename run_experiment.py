@@ -24,17 +24,17 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "build"))
 
 # Import registry
-from modules.registry import (
+from visionstream.registry import (
     get_codec, get_vision_model, get_dataset, get_metric, get_transform,
     list_all,
 )
 
 # Trigger auto-discovery of all built-in implementations
-import modules.codecs           # noqa: F401
-import modules.vision_models    # noqa: F401
-import modules.datasets         # noqa: F401
+import visionstream.codecs           # noqa: F401
+import visionstream.models    # noqa: F401
+import visionstream.data         # noqa: F401
 import tools.metrics.builtin_metrics  # noqa: F401
-import modules.preprocessing.builtin_transforms  # noqa: F401
+import visionstream.data.builtin_transforms  # noqa: F401
 
 
 def load_config(path: str) -> dict:
@@ -162,7 +162,7 @@ def run(config: dict):
         print("=" * 60)
 
     # ── Save results ──
-    results_dir = out_cfg.get("results_dir", "user_workspace/experiments/")
+    results_dir = out_cfg.get("results_dir", "workspace/experiments/")
     os.makedirs(results_dir, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     out_path = os.path.join(results_dir, f"experiment_{pipe['codec']}_{timestamp}.json")

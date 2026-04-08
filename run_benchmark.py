@@ -71,10 +71,10 @@ def benchmark_backbone(model_name: str, device: str = "cuda:0"):
 def benchmark_vision_model(task: str, model_id: str, device: str = "cuda:0"):
     print(f"Benchmarking Vision Task: {task} with {model_id}...")
     # This would use the adapters created in Phase 10
-    from modules.registry import create_vision_model
+    from visionstream.registry import get_vision_model
     
     try:
-        model = create_vision_model(model_id, device=device)
+        model = get_vision_model(model_id)(device=device)
         # Mock input based on task
         if task == "segmentation":
             x = torch.randn(1, 3, 512, 512).to(device)
@@ -99,7 +99,7 @@ def benchmark_vision_model(task: str, model_id: str, device: str = "cuda:0"):
 
 def benchmark_rd_curve(codec_id: str, dataset_id: str = "kodak", device: str = "cuda:0"):
     print(f"Generating R-D Curve for Codec: {codec_id} on {dataset_id}...")
-    from modules.registry import create_codec
+    from visionstream.registry import get_codec
     
     # Lambda points for R-D curve (e.g. quality levels or rate constraints)
     lambdas = [0.0018, 0.0035, 0.0067, 0.013, 0.025, 0.0483]
@@ -110,7 +110,7 @@ def benchmark_rd_curve(codec_id: str, dataset_id: str = "kodak", device: str = "
     
     for lmb in lambdas:
         try:
-            codec = create_codec(codec_id, lmbda=lmb, device=device)
+            codec = get_codec(codec_id)(lmbda=lmb, device=device)
             
             # Measure encoding/decoding latency
             enc_latency = measure_cuda_latency(lambda: codec.compress(x), iterations=10)
@@ -132,11 +132,11 @@ def benchmark_rd_curve(codec_id: str, dataset_id: str = "kodak", device: str = "
 
 def benchmark_e2e(codec_id: str, model_id: str, device: str = "cuda:0"):
     print(f"Benchmarking E2E: {codec_id} -> {model_id}...")
-    from modules.registry import create_codec, create_vision_model
+    from visionstream.registry import get_codec, get_vision_model
     
     try:
-        codec = create_codec(codec_id, device=device)
-        model = create_vision_model(model_id, device=device)
+        codec = get_codec(codec_id)(device=device)
+        model = get_vision_model(model_id)(device=device)
         x = torch.randn(1, 3, 224, 224).to(device)
         
         def run_e2e():
