@@ -21,6 +21,7 @@ workspace/
 # Keep workspace root marker files
 !workspace/README.md
 !workspace/.gitkeep
+!data/*.py
 
 # Python
 __pycache__/
