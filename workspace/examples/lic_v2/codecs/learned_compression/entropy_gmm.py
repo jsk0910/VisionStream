@@ -1,6 +1,20 @@
 import torch
 import torch.nn as nn
-from .entropy import MaskedConv2d
+class MaskedConv2d(nn.Conv2d):
+    def __init__(self, mask_type, *args, **kwargs):
+        super(MaskedConv2d, self).__init__(*args, **kwargs)
+        self.register_buffer('mask', torch.ones_like(self.weight.data))
+        _, _, kH, kW = self.weight.size()
+        
+        # Mask out future pixels
+        # mask_type 'A' strictly avoids center pixel
+        # mask_type 'B' allows center pixel
+        self.mask[:, :, kH // 2, kW // 2 + (mask_type == 'B'):] = 0
+        self.mask[:, :, kH // 2 + 1:] = 0
+
+    def forward(self, x):
+        self.weight.data *= self.mask
+        return super(MaskedConv2d, self).forward(x)
 
 class ELICContextModel(nn.Module):
     """
