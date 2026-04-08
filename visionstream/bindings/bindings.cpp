@@ -25,7 +25,7 @@ public:
     }
 };
 
-PYBIND11_MODULE(visionstream, m) {
+PYBIND11_MODULE(_C, m) {
     m.doc() = "VisionStream Hybrid Vision Research Framework Core";
 
     py::enum_<DataType>(m, "DataType")

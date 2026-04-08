@@ -25,3 +25,10 @@ except ImportError:
 
 __version__ = "3.1.0"
 __all__ = ["registry"]
+
+# Expose C++ bindings
+try:
+    from ._C import Node, ArithmeticCoder, GraphManager, VisionBuffer, DataType, DeviceType
+    __all__.extend(["Node", "ArithmeticCoder", "GraphManager", "VisionBuffer", "DataType", "DeviceType"])
+except ImportError:
+    pass

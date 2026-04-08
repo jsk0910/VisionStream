@@ -49,5 +49,5 @@ pybind11_add_module(visionstream_python MODULE
 
 target_link_libraries(visionstream_python PRIVATE visionstream_core)
 
-# Output as 'visionstream.so' for direct Python import
-set_target_properties(visionstream_python PROPERTIES OUTPUT_NAME "visionstream")
+# Output as '_C.so' inside the build so it can be imported by visionstream/__init__.py
+set_target_properties(visionstream_python PROPERTIES OUTPUT_NAME "_C")
