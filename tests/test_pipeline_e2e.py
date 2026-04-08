@@ -149,9 +149,10 @@ def main():
     print("=== VisionStream Phase 7: End-to-End System Integration Pipeline ===\n")
     
     # Initialize Core Pipeline Nodes
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
     prep_node = PreprocessingNode("Preprocessor", target_size=(640, 640))
-    codec_node = V2NeuralCodecNode("V2_Codec_Node", device="cuda:0")
-    yolo_node = YoloInferenceNode("YOLO_Detector", model_name="yolov8n.pt", device="cuda:0")
+    codec_node = V2NeuralCodecNode("V2_Codec_Node", device=device)
+    yolo_node = YoloInferenceNode("YOLO_Detector", model_name="yolov8n.pt", device=device)
     
     # Load Kodak Test Image
     data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/kodak'))
@@ -164,7 +165,7 @@ def main():
     print(f"Loading Base Image: {test_img_path}")
     
     # Raw Image [1, C, H, W] uint8
-    raw_img = io.read_image(test_img_path).unsqueeze(0).to("cuda:0")
+    raw_img = io.read_image(test_img_path).unsqueeze(0).to(device)
     print(f"Raw Image Shape: {raw_img.shape}")
     
     print("\n--- [START PIPELINE EXECUTION] ---")

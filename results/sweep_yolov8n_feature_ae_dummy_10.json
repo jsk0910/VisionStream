@@ -1,0 +1,47 @@
+[
+    {
+        "split_point": "backbone.stage1",
+        "flops_g": 12.5,
+        "params_m": 5.2,
+        "output_tensor_mb": 1.5,
+        "avg_bpp": 0.21730183934167654,
+        "avg_latency_ms": 21.163330617948333,
+        "accuracy_metric": 0.7304361546784393
+    },
+    {
+        "split_point": "backbone.stage2",
+        "flops_g": 12.5,
+        "params_m": 5.2,
+        "output_tensor_mb": 1.5,
+        "avg_bpp": 0.05790227996677484,
+        "avg_latency_ms": 21.243212977777766,
+        "accuracy_metric": 0.9537219494777331
+    },
+    {
+        "split_point": "backbone.stage3",
+        "flops_g": 12.5,
+        "params_m": 5.2,
+        "output_tensor_mb": 1.5,
+        "avg_bpp": 0.12429617625342422,
+        "avg_latency_ms": 17.149493080694143,
+        "accuracy_metric": 0.9466859640349358
+    },
+    {
+        "split_point": "backbone.stage4",
+        "flops_g": 12.5,
+        "params_m": 5.2,
+        "output_tensor_mb": 1.5,
+        "avg_bpp": 0.06738038388601987,
+        "avg_latency_ms": 12.645369137688984,
+        "accuracy_metric": 0.9319552620171909
+    },
+    {
+        "split_point": "neck",
+        "flops_g": 12.5,
+        "params_m": 5.2,
+        "output_tensor_mb": 1.5,
+        "avg_bpp": 0.09173975141602553,
+        "avg_latency_ms": 29.89644236855408,
+        "accuracy_metric": 0.8700823647708746
+    }
+]
