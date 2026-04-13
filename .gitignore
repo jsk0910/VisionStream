@@ -21,7 +21,7 @@ workspace/
 # Keep workspace root marker files
 !workspace/README.md
 !workspace/.gitkeep
-!workspace/examples
+!workspace/examples/*
 !visionstream/data/*.py
 
 # Python
