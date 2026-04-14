@@ -122,4 +122,5 @@ class BaseFeatureAutoEncoder(BaseIntraCodec, nn.Module):
         return x_hat, info
 
 # 범용 레지스트리 자동 등록
-register_codec("feature_ae_dummy", BaseFeatureAutoEncoder)
+register_codec("feature_ae_dummy")(BaseFeatureAutoEncoder)
+FeatureAutoEncoder = BaseFeatureAutoEncoder
